@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Zoom Settings</title>
+  <style>
+    body { 
+      width: 400px; 
+      height: 200px; 
+      margin: 0; 
+      padding: 10px; 
+      box-sizing: border-box; 
+      display: flex; 
+      flex-direction: column;
+    }
+    input, button { margin: 5px 0; }
+    .remove { color: red; cursor: pointer; margin-left: 10px; }
+    #url, #zoom, #addSite { width: calc(100% - 20px); } /* Установка ширины для input и button */
+  </style>
+</head>
+<body>
+  <h3>Настройки масштабирования</h3>
+
+  <div>
+    <label>
+      <input type="checkbox" id="toggleExtension"> Включить расширение
+    </label>
+  </div>
+
+  <div>
+    <input id="url" type="text" placeholder="URL или шаблон" />
+    <input id="zoom" type="number" placeholder="Масштаб" step="0.1" value="1" />
+    <button id="addSite">Добавить</button>
+  </div>
+
+  <ul id="siteList"></ul>
+  <script src="popup.js"></script>
+</body>
+</html>
