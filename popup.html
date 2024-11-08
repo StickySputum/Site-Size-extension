@@ -7,22 +7,27 @@
     * {
       box-sizing: border-box;
     }
+
+    /* Тёмная тема для фона и текста */
     body { 
       display: flex;
       flex-direction: column;
       align-items: stretch;
       padding: 15px;
-      min-width: 300px; /* Минимальная ширина popup */
-      max-width: 500px; /* Максимальная ширина popup */
+      min-width: 300px;
+      max-width: 500px;
       min-height: 300px;
       max-height: 600px;
       font-family: Arial, sans-serif;
+      background-color: #1f1f1f; /* Тёмный фон */
+      color: #e0e0e0; /* Светлый текст */
     }
 
     h3 {
       margin: 0 0 10px;
       font-size: 1.2rem;
       text-align: center;
+      color: #ffffff;
     }
 
     .input-container {
@@ -36,29 +41,48 @@
       font-size: 1rem;
     }
 
-    label {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    input[type="text"], input[type="number"], button {
+    input[type="text"], input[type="number"] {
       padding: 8px;
       width: 100%;
+      color: #e0e0e0;
+      background-color: #333333; /* Тёмный фон для полей ввода */
+      border: 1px solid #555555; /* Цвет границы */
+      border-radius: 4px;
+    }
+
+    input[type="text"]::placeholder,
+    input[type="number"]::placeholder {
+      color: #aaaaaa; /* Цвет плейсхолдера */
+    }
+
+    /* Стили для кнопок */
+    button {
+      padding: 10px;
+      width: 100%;
+      color: #ffffff;
+      background-color: #4CAF50; /* Тёмно-зелёный цвет для кнопок */
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #45a049; /* Более светлый оттенок при наведении */
     }
 
     #toggleListButton {
       margin-top: 5px;
-      cursor: pointer;
-      text-align: center;
+      background-color: #333333;
     }
 
+    /* Список сайтов */
     #siteList {
       display: none;
       list-style-type: none;
       padding: 0;
       margin: 10px 0 0;
-      border-top: 1px solid #ccc;
+      border-top: 1px solid #555555;
       max-height: 150px;
       overflow-y: auto;
     }
@@ -68,7 +92,7 @@
       justify-content: space-between;
       align-items: center;
       padding: 8px 0;
-      border-bottom: 1px solid #f0f0f0;
+      border-bottom: 1px solid #444444;
     }
 
     .icon-button {
@@ -82,13 +106,60 @@
     .icon-button img {
       width: 16px;
       height: 16px;
+      filter: invert(1); /* Инвертируем цвет значка для тёмной темы */
     }
 
     .remove {
-      color: red;
+      color: #ff6666; /* Красный для удаления */
       cursor: pointer;
       margin-left: 10px;
       font-size: 1.2em;
+    }
+
+    /* Стили для переключателя */
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 50px;
+      height: 24px;
+    }
+
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #555555; /* Цвет выключенного переключателя */
+      transition: 0.4s;
+      border-radius: 24px;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 18px;
+      width: 18px;
+      left: 3px;
+      bottom: 3px;
+      background-color: white;
+      transition: 0.4s;
+      border-radius: 50%;
+    }
+
+    input:checked + .slider {
+      background-color: #4CAF50; /* Цвет включенного переключателя */
+    }
+
+    input:checked + .slider:before {
+      transform: translateX(26px);
     }
   </style>
 </head>
@@ -97,7 +168,11 @@
 
   <div>
     <label>
-      <input type="checkbox" id="toggleExtension"> Включить расширение
+      <span>Включить расширение</span>
+      <label class="switch">
+        <input type="checkbox" id="toggleExtension">
+        <span class="slider"></span>
+      </label>
     </label>
   </div>
 
